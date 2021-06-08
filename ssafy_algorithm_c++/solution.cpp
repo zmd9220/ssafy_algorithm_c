@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <time.h>
 
 using namespace std;
 
@@ -14,7 +15,6 @@ void dfs(int sr, int sc, int milk, int dist, vector<vector<int>> vill, int n_siz
 	if (milk == 0 || dist >= min_dist) {
 		if (min_dist > dist) {
 			min_dist = dist;
-			return;
 		}
 		return;
 	}
@@ -44,6 +44,8 @@ void dfs(int sr, int sc, int milk, int dist, vector<vector<int>> vill, int n_siz
 }
 
 int main() {
+	clock_t start, end;
+	
 	int tc;
 	cin >> tc;
 	for (int t = 1; t <= tc; t++) {
@@ -65,11 +67,16 @@ int main() {
 			}
 			vill.push_back(sample);
 		}
+		start = clock();
 
 		dfs(0, 0, M, 0, vill, N);
 
 		cout << '#' << t << ' ' << min_dist << endl;
+
+		end = clock();
+		cout << start << endl << end << endl;
 	}
+
 }
 
 //#include <algorithm>
