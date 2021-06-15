@@ -1,16 +1,16 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <time.h>
-
+#include <stdio.h>
 using namespace std;
 
 int dr[] = { 0, 0, -1, 1 };
 int dc[] = { -1, 1, 0, 0 };
 
-// Á¤´ä
+// ì •ë‹µ
 unsigned int min_dist = 100000;
 
 void dfs(int sr, int sc, int milk, int dist, int vill[][15], int n_size) {
-	// Å»Ãâ Á¶°Ç
+	// íƒˆì¶œ ì¡°ê±´
 	if (milk == 0 || dist >= min_dist) {
 		if (min_dist > dist) {
 			min_dist = dist;
@@ -21,16 +21,16 @@ void dfs(int sr, int sc, int milk, int dist, int vill[][15], int n_size) {
 	for (int i = 0; i < 4; i++) {
 		int nr = sr + dr[i];
 		int nc = sc + dc[i];
-		// ÁÂÇ¥¸¦ ¹ş¾î³ªÁö ¾Ê¾ÒÀ» °æ¿ì¸¸ ÁøÇà
+		// ì¢Œí‘œë¥¼ ë²—ì–´ë‚˜ì§€ ì•Šì•˜ì„ ê²½ìš°ë§Œ ì§„í–‰
 		if (0 <= nr && nr < n_size && 0 <= nc && nc < n_size) {
-			// 1 = ¿ìÀ¯ ÆÇ¸Å
+			// 1 = ìš°ìœ  íŒë§¤
 			if (vill[nr][nc] == 1) {
-				// 2 = ÀÌ¹Ì Áö³ª°£ °÷À¸·Î Ã³¸®
+				// 2 = ì´ë¯¸ ì§€ë‚˜ê°„ ê³³ìœ¼ë¡œ ì²˜ë¦¬
 				vill[nr][nc] = 2;
 				dfs(nr, nc, milk - 1, dist + 1, vill, n_size);
 				vill[nr][nc] = 1;
 			}
-			// 0 = ÀÏ¹İ µµ·Î
+			// 0 = ì¼ë°˜ ë„ë¡œ
 			else if (vill[nr][nc] == 0) {
 				vill[nr][nc] = 2;
 				dfs(nr, nc, milk, dist + 1, vill, n_size);
@@ -41,7 +41,8 @@ void dfs(int sr, int sc, int milk, int dist, int vill[][15], int n_size) {
 }
 
 int main() {
-	clock_t start, mid, end;
+	clock_t start, mid, end, endtime;
+	freopen("eval_input.txt", "r", stdin);
 	int tc;
 	cin >> tc;
 
@@ -50,10 +51,10 @@ int main() {
 
 	for (int t = 1; t <= tc; t++) {
 		min_dist = 100000;
-		// µ¥ÀÌÅÍ ÀÔ·Â
+		// ë°ì´í„° ì…ë ¥
 		int N, M;
 		cin >> N >> M;
-		// 2Â÷¿ø ¹è¿­ (ÁÂÇ¥)
+		// 2ì°¨ì› ë°°ì—´ (ì¢Œí‘œ)
 		int vill[15][15] = { 0, };
 
 		for (int i = 0; i < N; i++) {
@@ -72,9 +73,12 @@ int main() {
 
 		end = clock();
 		cout << end << endl;
-		cout << "°É¸° ½Ã°£: " << (double)(end - start) << endl;
+		cout << "ê±¸ë¦° ì‹œê°„: " << (double)(end - start) << endl;
 	}
+	endtime = clock();
+	cout << "ìµœì¢… ê±¸ë¦° ì‹œê°„: " << (double)(endtime - start) << endl;
 
+	return 0;
 }
 
 
