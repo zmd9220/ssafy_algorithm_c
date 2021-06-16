@@ -1,0 +1,7 @@
+﻿C4496 에러는 취약점 문제에 의해 MS사에서 추가한 C Run time library functions 때문에 뜨는 것이라고 한다. 
+
+fopen_s를 사용하여 overflow error, underflow error와 같은 취약점을 피하는 것이 좋지만 fopen을 사용해야하는 경우 전처리기 정의를 설정하여 경고를 무시할 수 있다.
+
+[프로젝트] - [속성]으로 들어간 후 '구성속성 - C/C++-전처리기'로 들어가서 전처리기 정의에 ;_CRT_SECURE_NO_WARNINGS를 추가해준다.
+
+출처: https://revereve.tistory.com/2 [doux rêve]
